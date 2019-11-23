@@ -1,0 +1,106 @@
+<div class="wrapper" [class.sidebar-mini]="cmnSrv.dashboardState.sidebarMiniToggle">
+  <div class="sidebar-panel">
+    <app-sidebar></app-sidebar>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
+    <div class="panel-content">
+      <router-outlet></router-outlet>
+    </div>
+
+
+
+    <button (click)="toggle()" id="btToggle" class="btn btn-info btn-lg" >{{button_name}}</button>
+
+    <div *ngIf="show_dialog">
+    
+
+      <!-- form start -->
+
+
+    <div class="col-xl">
+      <h4 >Car Details</h4>
+      <div class="card">
+        <div class="card-body">
+          <form #form="ngForm" (ngSubmit)="onSubmit()" novalidate class="mb-xl-4">
+            <div class="form-group row">
+              <label class="col-sm-1 col-form-label"> Title</label>
+              <div class="col-sm-5">
+                <input type="email" [(ngModel)]="this.cardetails.formdata.Title" [ngModelOptions]="{standalone: true}" class="form-control" placeholder=" Title">
+              </div>
+            </div>
+            <div class="form-group row">
+              <label class="col-sm-1 col-form-label">Price</label>
+              <div class="col-sm-5">
+                <input type="password"  [(ngModel)]="cardetails.formdata.Price" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="Price">
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-1 col-form-label">Image</label>
+              <div class="col-sm-5">
+                <input type="file" name="pic" [(ngModel)]="cardetails.formdata.Img" [ngModelOptions]="{standalone: true}" accept="E:\agx-admin-master\src\cars\image">
+              </div>
+            </div>
+
+            
+            <!-- <div class="form-group row">
+              <div class="col-sm-9 offset-sm-3">
+                <div class="custom-control custom-checkbox">
+                  <input type="checkbox" id="rme1" class="custom-control-input" checked>
+                  <label class="custom-control-label" for="rme1">Remember Me</label>
+                </div>
+              </div>
+            </div> -->
+            <div class="form-group row">
+              <div class="col-sm-7 offset-sm-3">
+                <button type="submit" class="btn btn-primary px-4">SUBMIT</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>    
+    </div>
+    <!-- form end -->
+    </div>
+    
+<br>
+
+ <!--crud start>-->
+
+ <div class="col-md-7 user-container">
+  <h2 style="margin: auto"> User Details</h2>
+  <!-- <button class="btn btn-danger" style="width:100px" (click)="addUser()"> Add User</button> -->
+  <table class="table table-striped">
+    <thead>
+    <tr>
+      <!-- <th class="hidden">Id</th> -->
+      <th>Title</th>
+      <th>Price</th>
+      <th>Img</th>
+    </tr>
+    </thead>
+    <tbody>
+ <!-- <tr>
+   <td>{{price}} </td>
+ </tr> -->
+      <tr *ngFor="let user of price">
+      <!-- <td class="hidden"> </td> -->
+      <td>{{user.Title }}</td>
+      <td>{{user.Price }}</td>
+      <img style="height: 60px ; width : 80px " src={{user.Img}} >
+      <td>{{user.Img}}</td>
+     
+      
+      <td><button class="btn btn-success" (click)="deleteUser(user)"> Delete</button>
+        <!-- <button class="btn btn-success" (click)="editUser(user)" style="margin-left: 20px;"> Edit</button></td> -->
+    </tr> 
+    </tbody>
+  </table>
+</div>
+
+  <!--crud end>-->
+
+    <app-footer></app-footer>
+  </div>
+</div>
